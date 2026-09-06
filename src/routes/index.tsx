@@ -1,24 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Code2, Layers3, GraduationCap, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import hero from "@/assets/tevexxo-hero.jpg.asset.json";
+import product from "@/assets/tevexxo-product.jpg.asset.json";
+import academy from "@/assets/tevexxo-academy.jpg.asset.json";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head:()=>({meta:[{title:"Tevexxo — Software, Products & Tech Training"},{name:"description",content:"Tevexxo builds scalable software, creates focused digital products and trains the next generation of engineers."},{property:"og:title",content:"Tevexxo — Build. Learn. Scale."},{property:"og:description",content:"Engineering, products and practical technology training under one roof."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component: Home
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+const services=[{icon:Code2,title:"Software Engineering",text:"Fast, scalable web and mobile products built for real-world growth."},{icon:Layers3,title:"Product Studio",text:"From product strategy and UX through launch, iteration and scale."},{icon:GraduationCap,title:"Tevexxo Academy",text:"Industry-led programs where learners build and ship real projects."},{icon:ShieldCheck,title:"Cloud & AI",text:"Reliable infrastructure, automation and applied intelligence."}];
+
+function Home(){return <main className="pt-18">
+  <section className="relative flex min-h-[760px] items-center overflow-hidden border-b border-border"><img src={hero.url} alt="Luminous digital wave representing Tevexxo technology" width={1920} height={1088} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover"/><div className="hero-shade absolute inset-0"/><div className="relative mx-auto w-full max-w-7xl px-5 py-24 lg:px-8"><div className="max-w-3xl"><p className="section-tag"><span className="pulse-dot"/> Software · Training · Product Studio</p><h1 className="font-display mt-6 text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-8xl">We build the tech <span className="text-gradient">your business runs on.</span></h1><p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">We design and ship software, train future-ready engineers, and partner with ambitious teams to turn complex ideas into working products.</p><div className="mt-9 flex flex-wrap gap-3"><Button asChild size="lg"><Link to="/contact">Start a project <ArrowRight className="size-4"/></Link></Button><Button asChild size="lg" variant="outline"><Link to="/courses">Explore courses</Link></Button></div></div><div className="mt-20 grid max-w-3xl grid-cols-2 gap-8 border-t border-border pt-7 sm:grid-cols-4">{[["120+","Projects"],["40+","Clients"],["3,500+","Learners"],["6 yrs","Building"]].map(([n,l])=><div key={l}><strong className="font-display text-2xl">{n}</strong><p className="mt-1 text-xs text-muted-foreground">{l}</p></div>)}</div></div></section>
+  <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32"><div className="max-w-2xl"><p className="section-tag">What we do</p><h2 className="font-display mt-4 text-4xl font-bold sm:text-5xl">One team. Three ways to move forward.</h2></div><div className="mt-14 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">{services.map(({icon:Icon,title,text})=><article key={title} className="group bg-card p-7"><Icon className="size-6 text-accent"/><h3 className="font-display mt-10 text-xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p></article>)}</div></section>
+  <section className="border-y border-border bg-secondary/35"><div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-2 lg:items-center lg:px-8"><img src={product.url} alt="Tevexxo product analytics interface" width={1200} height={912} loading="lazy" className="aspect-[4/3] w-full rounded-lg object-cover"/><div><p className="section-tag">Built in-house</p><h2 className="font-display mt-4 text-4xl font-bold sm:text-5xl">Products shaped by real operational problems.</h2><p className="mt-6 leading-8 text-muted-foreground">Focused tools for project delivery, analytics and modern commerce—designed from workflows we understand firsthand.</p><Button asChild variant="outline" className="mt-8"><Link to="/products">Explore products <ArrowRight className="size-4"/></Link></Button></div></div></section>
+  <section className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-2 lg:items-center lg:px-8"><div className="lg:order-2"><img src={academy.url} alt="Digital pathways representing Tevexxo technology education" width={1200} height={912} loading="lazy" className="aspect-[4/3] w-full rounded-lg object-cover"/></div><div><p className="section-tag">Tevexxo Academy</p><h2 className="font-display mt-4 text-4xl font-bold sm:text-5xl">Learn from people who ship.</h2><p className="mt-6 leading-8 text-muted-foreground">Cohort-led programs with practical projects, direct feedback and the tools modern engineering teams use every day.</p><Button asChild variant="outline" className="mt-8"><Link to="/courses">View programs <ArrowRight className="size-4"/></Link></Button></div></section>
+</main>}
