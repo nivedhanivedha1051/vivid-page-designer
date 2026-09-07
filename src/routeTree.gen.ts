@@ -15,6 +15,7 @@ import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as WhyUsRouteImport } from './routes/why-us'
@@ -49,6 +50,11 @@ const ProductsRoute = ProductsRouteImport.update({
   path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgramsRoute = ProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/products': typeof ProductsRoute
+  '/programs': typeof ProgramsRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/why-us': typeof WhyUsRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/products': typeof ProductsRoute
+  '/programs': typeof ProgramsRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/why-us': typeof WhyUsRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
   '/products': typeof ProductsRoute
+  '/programs': typeof ProgramsRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/why-us': typeof WhyUsRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/courses'
     | '/products'
+    | '/programs'
     | '/projects'
     | '/services'
     | '/why-us'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/courses'
     | '/products'
+    | '/programs'
     | '/projects'
     | '/services'
     | '/why-us'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/courses'
     | '/products'
+    | '/programs'
     | '/projects'
     | '/services'
     | '/why-us'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
   ProductsRoute: typeof ProductsRoute
+  ProgramsRoute: typeof ProgramsRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
   WhyUsRoute: typeof WhyUsRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programs': {
+      id: '/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
   ProductsRoute: ProductsRoute,
+  ProgramsRoute: ProgramsRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
   WhyUsRoute: WhyUsRoute,
