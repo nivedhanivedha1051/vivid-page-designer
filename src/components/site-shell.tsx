@@ -4,9 +4,10 @@ import { useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  ["Services", "/services"], ["Products", "/products"], ["Courses", "/courses"],
+  ["Home", "/"], ["Programs", "/programs"], ["Services", "/services"], ["Products", "/products"], ["Courses", "/courses"],
   ["Projects", "/projects"], ["Why Us", "/why-us"], ["About", "/about"], ["Blogs", "/blogs"],
 ] as const;
+
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
