@@ -4,9 +4,10 @@ import { useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  ["Services", "/services"], ["Products", "/products"], ["Courses", "/courses"],
+  ["Home", "/"], ["Programs", "/programs"], ["Services", "/services"], ["Products", "/products"], ["Courses", "/courses"],
   ["Projects", "/projects"], ["Why Us", "/why-us"], ["About", "/about"], ["Blogs", "/blogs"],
 ] as const;
+
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -14,7 +15,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 lg:px-8" aria-label="Main navigation">
         <Link to="/" className="font-display flex items-center gap-2 text-xl font-bold"><span className="logo-mark" />tevexxo</Link>
-        <div className="hidden items-center gap-6 lg:flex">{links.map(([label,to]) => <Link key={to} to={to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{className:"text-accent"}}>{label}</Link>)}</div>
+        <div className="hidden items-center gap-5 lg:flex">{links.map(([label,to]) => <Link key={to} to={to} activeOptions={{exact: to === "/"}} className="whitespace-nowrap text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{className:"text-accent"}}>{label}</Link>)}</div>
         <Button asChild className="hidden lg:inline-flex"><Link to="/contact">Contact us</Link></Button>
         <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setOpen(v => !v)} aria-label="Open menu">{open ? <X/> : <Menu/>}</Button>
       </nav>
